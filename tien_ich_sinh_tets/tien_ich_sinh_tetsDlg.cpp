@@ -192,7 +192,7 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 
 	// tao thu muc cha
 		UpdateData(TRUE);
-		path = _T("D:\\Code\\tien_ich_sinh_tets\\sinhtest\\");
+		path = _T("D:\\Code\\du an sinh tes\\sinhtest\\");
 		tenthumuc.taoTM((path+ten_TM));
 
 
