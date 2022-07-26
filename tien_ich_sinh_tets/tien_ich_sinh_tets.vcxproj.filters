@@ -36,6 +36,12 @@
     <ClInclude Include="tao_thu_muc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sinh_file_input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sinh_file_output.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tien_ich_sinh_tets.cpp">
@@ -48,6 +54,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tao_thu_muc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sinh_file_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sinh_file_output.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

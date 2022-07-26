@@ -23,6 +23,10 @@
 #define IDC_SOLUONGTEST                 1014
 #define IDC_BUTTON1                     1015
 #define IDC_EDIT1                       1016
+#define IDC_EDIT11                      1016
+#define IDC_EDIT12                      1017
+#define IDC_EDIT13                      1018
+#define IDC_EDIT14                      1019
 
 // Next default values for new objects
 // 

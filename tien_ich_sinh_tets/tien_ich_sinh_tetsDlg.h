@@ -4,6 +4,8 @@
 
 #pragma once
 #include"tao_thu_muc.h"
+#include"sinh_file_input.h"
+#include"sinh_file_output.h"
 #include<fstream>
 
 // CtienichsinhtetsDlg dialog
