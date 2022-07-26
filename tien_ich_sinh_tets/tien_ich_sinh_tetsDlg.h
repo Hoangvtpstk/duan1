@@ -44,7 +44,17 @@ public:
 	int soluong;
 	int batdau;
 	int ketthuc;
+	int rand_batdau;
+	int rand_ketthuc;
+
+
+	int tes_bd_1;
+	int tes_kt_1;
+	CComboBox m_chon_chuong_trinh;
+	CComboBox kieu_du_lieu;
 	
 	CString input;
 	CString output;
+	
+	
 };

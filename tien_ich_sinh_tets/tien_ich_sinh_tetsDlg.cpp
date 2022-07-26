@@ -12,6 +12,7 @@
 #include <windows.h>
 #include<fstream>
 #include<time.h>
+#include"sinh_file_input.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -35,6 +36,8 @@ public:
 // Implementation
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
@@ -47,6 +50,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
+	
 END_MESSAGE_MAP()
 
 
@@ -63,6 +67,10 @@ CtienichsinhtetsDlg::CtienichsinhtetsDlg(CWnd* pParent /*=nullptr*/)
 	, ketthuc(0)
 	, input(_T(""))
 	, output(_T(""))
+	, rand_batdau(0)
+	, rand_ketthuc(0)
+	, tes_bd_1(0)
+	, tes_kt_1(0)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -75,6 +83,13 @@ void CtienichsinhtetsDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT3, batdau);
 	DDX_Text(pDX, IDC_EDIT4, input);
 	DDX_Text(pDX, IDC_EDIT5, output);
+	DDX_Text(pDX, IDC_EDIT6, rand_batdau);
+	DDX_Text(pDX, IDC_EDIT7, rand_ketthuc);
+	DDX_Text(pDX, IDC_EDIT8, tes_bd_1);
+	DDX_Text(pDX, IDC_EDIT9, tes_kt_1);
+
+	DDX_Control(pDX, IDC_COMBO1, m_chon_chuong_trinh);
+	DDX_Control(pDX, IDC_COMBO2, kieu_du_lieu);
 }
 
 BEGIN_MESSAGE_MAP(CtienichsinhtetsDlg, CDialogEx)
@@ -84,6 +99,7 @@ BEGIN_MESSAGE_MAP(CtienichsinhtetsDlg, CDialogEx)
 	ON_EN_CHANGE(IDC_TEN_TM, &CtienichsinhtetsDlg::OnEnChangeTenTm)
 	
 	ON_BN_CLICKED(IDC_BUTTON1, &CtienichsinhtetsDlg::OnBnClickedButton1)
+	
 END_MESSAGE_MAP()
 
 
@@ -203,14 +219,41 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 		tenthumuctest.taoTMTEST(path + path_foder);
 
 		// sinh file iuput
-		CString path_file_in = path + path_foder + "\\" + input;
+		path_file_in = path + path_foder + "\\" + input;
 		ofstream taoinput;
 		taoinput.open(path_file_in);
+		taoinput.close();
 
 		//sinh file output
 		CString path_file_out = path + path_foder + "\\" + output;
 		ofstream taooutput;
 		taooutput.open(path_file_out);
+		taooutput.close();
+	}
+	if (m_chon_chuong_trinh.GetCurSel() == 0) {
+		if (kieu_du_lieu.GetCurSel() == 0)
+		{
+			for (int i = tes_bd_1; i <= tes_kt_1; i++) {
+				
+				path_add.Format(_T("%d"), i);
+				path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
+				tenthumuctest.taoTMTEST(path + path_foder);
+
+				// sinh file iuput
+				path_file_in = path + path_foder + "\\" + input;
+				ofstream taoinput;
+				taoinput.open(path_file_in);
+				int n= sinh_file_input().sinhsongaunhien_int(rand_batdau,rand_ketthuc);
+				taoinput << n;
+				taoinput.close();
+				Sleep(1000);
+			}
+		}
+		else if (kieu_du_lieu.GetCurSel() == 2)
+		{
+
+		}
 	}
 	
 }
+
