@@ -12,7 +12,6 @@
 #include <windows.h>
 #include<fstream>
 #include<time.h>
-#include"sinh_file_input.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -60,22 +59,13 @@ END_MESSAGE_MAP()
 
 CtienichsinhtetsDlg::CtienichsinhtetsDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_TIEN_ICH_SINH_TETS_DIALOG, pParent)
-	, ten_TM(_T("q"))
-	, soluong(10)
-	, batdau(1)
+	, ten_TM(_T(""))
+	, soluong(0)
+	, batdau(0)
 	
-	, ketthuc(5)
-	, input(_T("a.txt"))
-	, output(_T("b"))
-	, rand_batdau(0)
-	, rand_ketthuc(500)
-	, tes_bd_1(0)
-	, tes_kt_1(5)
-
-	, test_bd_2(6)
-	, test_kt_2(10)
-	, rand_bd_1(500)
-	, rand_kt_1(1000)
+	, ketthuc(0)
+	, input(_T(""))
+	, output(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -88,18 +78,6 @@ void CtienichsinhtetsDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT3, batdau);
 	DDX_Text(pDX, IDC_EDIT4, input);
 	DDX_Text(pDX, IDC_EDIT5, output);
-	DDX_Text(pDX, IDC_EDIT6, rand_batdau);
-	DDX_Text(pDX, IDC_EDIT7, rand_ketthuc);
-	DDX_Text(pDX, IDC_EDIT8, tes_bd_1);
-	DDX_Text(pDX, IDC_EDIT9, tes_kt_1);
-
-	DDX_Control(pDX, IDC_COMBO1, m_chon_chuong_trinh);
-	DDX_Control(pDX, IDC_COMBO2, kieu_du_lieu);
-
-	DDX_Text(pDX, IDC_EDIT11, test_bd_2);
-	DDX_Text(pDX, IDC_EDIT12, test_kt_2);
-	DDX_Text(pDX, IDC_EDIT13, rand_bd_1);
-	DDX_Text(pDX, IDC_EDIT14, rand_kt_1);
 }
 
 BEGIN_MESSAGE_MAP(CtienichsinhtetsDlg, CDialogEx)
@@ -110,6 +88,9 @@ BEGIN_MESSAGE_MAP(CtienichsinhtetsDlg, CDialogEx)
 	
 	ON_BN_CLICKED(IDC_BUTTON1, &CtienichsinhtetsDlg::OnBnClickedButton1)
 	
+	ON_CBN_SELCHANGE(IDC_COMBO1, &CtienichsinhtetsDlg::OnCbnSelchangeCombo1)
+	ON_EN_CHANGE(IDC_EDIT6, &CtienichsinhtetsDlg::OnEnChangeEdit6)
+	ON_EN_CHANGE(IDC_EDIT7, &CtienichsinhtetsDlg::OnEnChangeEdit7)
 END_MESSAGE_MAP()
 
 
@@ -143,9 +124,6 @@ BOOL CtienichsinhtetsDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
-	// 
-	m_chon_chuong_trinh.SetCurSel(0);
-	kieu_du_lieu.SetCurSel(0);
 	
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -232,56 +210,43 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 		tenthumuctest.taoTMTEST(path + path_foder);
 
 		// sinh file iuput
-		path_file_in = path + path_foder + "\\" + input;
+		CString path_file_in = path + path_foder + "\\" + input;
 		ofstream taoinput;
 		taoinput.open(path_file_in);
-		taoinput.close();
 
 		//sinh file output
 		CString path_file_out = path + path_foder + "\\" + output;
 		ofstream taooutput;
 		taooutput.open(path_file_out);
-		taooutput.close();
-	}
-	if (m_chon_chuong_trinh.GetCurSel() == 0) {
-		if (kieu_du_lieu.GetCurSel() == 0)
-		{
-			for (int i = tes_bd_1; i <= tes_kt_1; i++) {
-				
-				path_add.Format(_T("%d"), i);
-				path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
-				tenthumuctest.taoTMTEST(path + path_foder);
-
-				// sinh file iuput
-				path_file_in = path + path_foder + "\\" + input;
-				ofstream taoinput;
-				taoinput.open(path_file_in);
-				int n= sinh_file_input().sinhsongaunhien_int(rand_batdau,rand_ketthuc);
-				taoinput << n;
-				taoinput.close();
-				Sleep(1000);
-			}
-			for (int i = test_bd_2; i <= test_kt_2; i++) {
-
-				path_add.Format(_T("%d"), i);
-				path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
-				tenthumuctest.taoTMTEST(path + path_foder);
-
-				// sinh file iuput
-				path_file_in = path + path_foder + "\\" + input;
-				ofstream taoinput;
-				taoinput.open(path_file_in);
-				int n = sinh_file_input().sinhsongaunhien_int(rand_bd_1, rand_kt_1);
-				taoinput << n;
-				taoinput.close();
-				Sleep(1000);
-			}
-		}
-		else if (kieu_du_lieu.GetCurSel() == 2)
-		{
-
-		}
 	}
 	
 }
 
+
+
+void CtienichsinhtetsDlg::OnCbnSelchangeCombo1()
+{
+	// TODO: Add your control notification handler code here
+}
+
+
+void CtienichsinhtetsDlg::OnEnChangeEdit6()
+{
+	// TODO:  If this is a RICHEDIT control, the control will not
+	// send this notification unless you override the CDialogEx::OnInitDialog()
+	// function and call CRichEditCtrl().SetEventMask()
+	// with the ENM_CHANGE flag ORed into the mask.
+
+	// TODO:  Add your control notification handler code here
+}
+
+
+void CtienichsinhtetsDlg::OnEnChangeEdit7()
+{
+	// TODO:  If this is a RICHEDIT control, the control will not
+	// send this notification unless you override the CDialogEx::OnInitDialog()
+	// function and call CRichEditCtrl().SetEventMask()
+	// with the ENM_CHANGE flag ORed into the mask.
+
+	// TODO:  Add your control notification handler code here
+}
