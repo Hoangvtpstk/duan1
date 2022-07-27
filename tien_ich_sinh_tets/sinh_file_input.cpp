@@ -37,3 +37,20 @@ string sinh_file_input::sinhchuoingaunhien(int bat_dau, int ket_thuc) {
 	}
 		return str;
 }
+string sinh_file_input::sinhsongaunhien_boll(int bat_dau, int ket_thuc) {
+	//srand(time(NULL));
+	
+	int n = rand() % ket_thuc - bat_dau;
+	int a;
+	string str,chuoi;
+	for (int i = bat_dau; i <= n; i++) {
+		a=  (rand() % 2) ;
+		str = to_string(a);
+		chuoi += str;
+		
+	}
+	//a = atoi(chuoi.c_str());
+	return chuoi;
+	 
+	
+}
