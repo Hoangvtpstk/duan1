@@ -20,14 +20,14 @@ float sinh_file_input::sinhsongaunhien_float(int bat_dau, int ket_thuc) {
 	return n;
 }
 string sinh_file_input::sinhkytugaunhien_char(int bat_dau, int ket_thuc) {
-	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789");
+	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()_+=-\][{}';""/.,<>?:|");
 	string s;
 	s = xaus[rand() % xaus.size()];
 	
 	return s;
 }
 string sinh_file_input::sinhchuoingaunhien(int bat_dau, int ket_thuc) {
-	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789");
+	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()_+=-\][{}';""/.,<>?:|");
 	string s;
 	string str;
 	int n = rand() % ket_thuc - bat_dau;

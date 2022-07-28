@@ -14,6 +14,7 @@ class CtienichsinhtetsDlg : public CDialogEx
 // Construction
 public:
 	CtienichsinhtetsDlg(CWnd* pParent = nullptr);	// standard constructor
+	
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
