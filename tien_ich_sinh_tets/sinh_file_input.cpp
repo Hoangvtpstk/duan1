@@ -81,3 +81,40 @@ float* sinh_file_input::sinhmangso_float(int bat_dau, int ket_thuc, int& n_phatu
 	return a;
 
 }
+char* sinh_file_input::sinhmangso_char(int bat_dau, int ket_thuc, int& n_phatu)
+{
+	srand(time(NULL));
+	int n = rand() % ket_thuc - bat_dau;
+	
+	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()_+=-\][{}';""/.,<>?:|");
+	
+	char a[10000];
+	
+	for (int i = bat_dau; i <= n; i++) {
+		a[i] = xaus[rand() % xaus.size()];
+		cout << "  ";
+	}
+	n_phatu = n;
+	return a;
+
+}
+void sinh_file_input::sinhmangso_string(string *output_string, int bat_dau, int ket_thuc, int& n_phatu)
+{
+	srand(time(NULL));
+	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()_+=-\][{}';""/.,<>?:|");
+	string s;
+	int n = rand() % ket_thuc - bat_dau;
+	
+	for (size_t k = bat_dau; k < n; k++)
+	{
+		int m = rand() % ket_thuc - bat_dau;
+		for (int i = bat_dau; i <=m; i++) {
+			s = xaus[rand() % xaus.size()];
+			output_string[k] += s;
+			cout << endl;
+		}
+		
+	}
+	n_phatu = n;	
+
+}

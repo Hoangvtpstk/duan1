@@ -743,13 +743,13 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 			path_file_in = path + path_foder + "\\" + input;
 			ofstream taoinput;
 			taoinput.open(path_file_in);
-			string n = sinh_file_input().sinhkytugaunhien_char(rand_batdau, rand_ketthuc);
-			taoinput << n;
-			taoinput << endl;
-			taoinput.close();
-			taoinput.open(path_file_in, ios_base::app);
-			string a = sinh_file_input().sinhkytugaunhien_char(rand_batdau, rand_ketthuc);
-			taoinput << a;
+
+			int nPhantu = 0;
+			char* n_mangphantu = sinh_file_input().sinhmangso_char(rand_batdau, rand_ketthuc, nPhantu);
+			taoinput << nPhantu << endl;
+			for (int i = 0; i < nPhantu; i++) {
+				taoinput << n_mangphantu[i] << " ";
+			}
 			taoinput.close();
 			Sleep(1000);
 		}
@@ -763,17 +763,15 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 			path_file_in = path + path_foder + "\\" + input;
 			ofstream taoinput;
 			taoinput.open(path_file_in);
-			string n = sinh_file_input().sinhkytugaunhien_char(rand_bd_1, rand_kt_1);
-			taoinput << n;
-			taoinput << endl;
-			taoinput.close();
-			taoinput.open(path_file_in, ios_base::app);
-			string a = sinh_file_input().sinhkytugaunhien_char(rand_bd_1, rand_kt_1);
-			taoinput << a;
+
+			int nPhantu = 0;
+			char* n_mangphantu = sinh_file_input().sinhmangso_char(rand_bd_1, rand_kt_1, nPhantu);
+			taoinput << nPhantu << endl;
+			for (int i = 0; i < nPhantu; i++) {
+				taoinput << n_mangphantu[i] << " ";
+			}
 			taoinput.close();
 			Sleep(1000);
-
-
 		}
 	}
 		else if (kieu_du_lieu.GetCurSel() == 3)
@@ -784,17 +782,17 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 			path_add.Format(_T("%d"), i);
 			path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
 			tenthumuctest.taoTMTEST(path + path_foder);
-
 			// sinh file iuput
 			path_file_in = path + path_foder + "\\" + input;
 			ofstream taoinput;
 			taoinput.open(path_file_in);
-			string n = sinh_file_input().sinhchuoingaunhien(rand_batdau, rand_ketthuc);
-			taoinput << n << endl;
-			taoinput.close();
-			taoinput.open(path_file_in, ios_base::app);
-			string a = sinh_file_input().sinhchuoingaunhien(rand_batdau, rand_ketthuc);
-			taoinput << a;
+
+			int nPhantu = 0;
+			string* n_mangphantu = sinh_file_input().sinhmangso_string(rand_batdau, rand_ketthuc, nPhantu);
+			taoinput << nPhantu << endl;
+			for (int i = 0; i < nPhantu; i++) {		
+					taoinput << n_mangphantu[i];				
+			}
 			taoinput.close();
 			Sleep(1000);
 		}
