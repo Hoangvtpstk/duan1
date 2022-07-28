@@ -14,4 +14,6 @@ public:
 	string sinhkytugaunhien_char(int bat_dau, int ket_thuc);
 	string sinhchuoingaunhien(int bat_dau, int ket_thuc);
 	string sinhsongaunhien_boll(int bat_dau, int ket_thuc);
+	int* sinhmangso_int(int bat_dau, int ket_thuc, int& n_phatu);
+	float* sinhmangso_float(int bat_dau, int ket_thuc, int& n_phatu);
 };

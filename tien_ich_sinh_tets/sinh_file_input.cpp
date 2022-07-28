@@ -54,3 +54,30 @@ string sinh_file_input::sinhsongaunhien_boll(int bat_dau, int ket_thuc) {
 	 
 	
 }
+int* sinh_file_input::sinhmangso_int(int bat_dau, int ket_thuc, int &n_phatu) {
+	srand(time(NULL));
+	int n = rand() % ket_thuc - bat_dau;
+	int i;
+	int a[10000];
+	for (   i = bat_dau; i <= n; i++) {
+		a[i] = rand() % (ket_thuc - bat_dau + 1) + bat_dau;
+		cout << "  ";
+		}
+	n_phatu = n;
+	return a;
+	
+}
+float* sinh_file_input::sinhmangso_float(int bat_dau, int ket_thuc, int& n_phatu)
+{
+	//srand(time(NULL));
+	int n = rand() % ket_thuc - bat_dau;
+	int i;
+	float a[10000];
+	for (i = bat_dau; i <= n; i++) {
+		a[i] = (float)bat_dau + (float)(ket_thuc - bat_dau) * (float)rand() / (float)RAND_MAX;
+		 		cout << "  ";
+	}
+	n_phatu = n;
+	return a;
+
+}
