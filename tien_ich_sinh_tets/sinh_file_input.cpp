@@ -20,14 +20,14 @@ float sinh_file_input::sinhsongaunhien_float(int bat_dau, int ket_thuc) {
 	return n;
 }
 string sinh_file_input::sinhkytugaunhien_char(int bat_dau, int ket_thuc) {
-	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()_+=-\][{}';""/.,<>?:|");
+	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789");
 	string s;
 	s = xaus[rand() % xaus.size()];
 	
 	return s;
 }
 string sinh_file_input::sinhchuoingaunhien(int bat_dau, int ket_thuc) {
-	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()_+=-\][{}';""/.,<>?:|");
+	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789");
 	string s;
 	string str;
 	int n = rand() % ket_thuc - bat_dau;
@@ -54,6 +54,7 @@ string sinh_file_input::sinhsongaunhien_boll(int bat_dau, int ket_thuc) {
 	 
 	
 }
+
 int* sinh_file_input::sinhmangso_int(int bat_dau, int ket_thuc, int &n_phatu) {
 	srand(time(NULL));
 	int n = rand() % ket_thuc - bat_dau;
@@ -86,7 +87,7 @@ char* sinh_file_input::sinhmangso_char(int bat_dau, int ket_thuc, int& n_phatu)
 	srand(time(NULL));
 	int n = rand() % ket_thuc - bat_dau;
 	
-	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()_+=-\][{}';""/.,<>?:|");
+	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789");
 	
 	char a[10000];
 	
@@ -98,23 +99,72 @@ char* sinh_file_input::sinhmangso_char(int bat_dau, int ket_thuc, int& n_phatu)
 	return a;
 
 }
-void sinh_file_input::sinhmangso_string(string *output_string, int bat_dau, int ket_thuc, int& n_phatu)
+void sinh_file_input::sinhmangso_string(string* lay_mang,int bat_dau, int ket_thuc, int& n_phatu)
 {
 	srand(time(NULL));
-	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789~!@#$%^&*()_+=-\][{}';""/.,<>?:|");
+	string xaus = ("QWERTYUIOPLKJHGFDSAZXCVBNMabcdefghijklmnopqrstuvwxyz0123456789");
 	string s;
-	int n = rand() % ket_thuc - bat_dau;
+		int n = rand() % ket_thuc - bat_dau;
 	
 	for (size_t k = bat_dau; k < n; k++)
 	{
 		int m = rand() % ket_thuc - bat_dau;
 		for (int i = bat_dau; i <=m; i++) {
 			s = xaus[rand() % xaus.size()];
-			output_string[k] += s;
+			lay_mang[k] += s;
 			cout << endl;
 		}
 		
 	}
-	n_phatu = n;	
+	n_phatu = n;
+	
+	
 
+}
+
+void sinh_file_input::sinhmangso_bool(string* lay_mang, int bat_dau, int ket_thuc, int& n_phatu)
+{
+	srand(time(NULL));
+	
+	int n = rand() % ket_thuc - bat_dau;
+	int a;
+	string str;
+	
+	for (size_t k = bat_dau; k < n; k++)
+	{
+		int m = rand() % ket_thuc - bat_dau;
+		for (int i = bat_dau; i <= m; i++) {
+			a = (rand() % 2);
+			str = to_string(a);
+			lay_mang[k] += str;
+			cout << endl;
+			
+		}
+
+	}
+	n_phatu = n;
+	
+
+
+}
+
+int* sinh_file_input::sinhmanghaichieu_int(int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu) {
+	srand(time(NULL));
+	int n = rand() % ket_thuc - bat_dau;
+	int m = rand() % ket_thuc - bat_dau;
+	
+	int a[100][100];
+	
+	for (int i = bat_dau; i <= n; i++) {
+		cout << endl;
+		for (int j = bat_dau; j <= m; j++) {
+			a[i][j] = rand() % (ket_thuc - bat_dau + 1) + bat_dau;
+			cout << "  ";
+		}
+		
+	}
+	n_phatu = n;
+	m_phantu = m;
+	return &a[0][0];
+	
 }

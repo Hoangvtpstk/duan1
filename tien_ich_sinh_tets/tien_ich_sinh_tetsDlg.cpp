@@ -786,12 +786,12 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 			path_file_in = path + path_foder + "\\" + input;
 			ofstream taoinput;
 			taoinput.open(path_file_in);
-
+			string lay_mang[10000];
 			int nPhantu = 0;
-			string* n_mangphantu = sinh_file_input().sinhmangso_string(rand_batdau, rand_ketthuc, nPhantu);
+			 sinh_file_input().sinhmangso_string(lay_mang, rand_batdau, rand_ketthuc, nPhantu);
 			taoinput << nPhantu << endl;
 			for (int i = 0; i < nPhantu; i++) {		
-					taoinput << n_mangphantu[i];				
+					taoinput << lay_mang[i]<<endl;				
 			}
 			taoinput.close();
 			Sleep(1000);
@@ -802,23 +802,23 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 			path_add.Format(_T("%d"), i);
 			path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
 			tenthumuctest.taoTMTEST(path + path_foder);
-			//tao forder test
+			// sinh file iuput
 			path_file_in = path + path_foder + "\\" + input;
 			ofstream taoinput;
 			taoinput.open(path_file_in);
-			string n = sinh_file_input().sinhchuoingaunhien(rand_bd_1, rand_kt_1);
-			taoinput << n << endl;
-			taoinput.close();
-			taoinput.open(path_file_in, ios_base::app);
-			string a = sinh_file_input().sinhchuoingaunhien(rand_bd_1, rand_kt_1);
-			taoinput << a;
+			string lay_mang[10000];
+			int nPhantu = 0;
+			sinh_file_input().sinhmangso_string(lay_mang, rand_bd_1, rand_kt_1, nPhantu);
+			taoinput << nPhantu << endl;
+			for (int i = 0; i < nPhantu; i++) {
+				taoinput << lay_mang[i] << endl;
+			}
 			taoinput.close();
 			Sleep(1000);
 
-
 		}
 	}
-		else if (kieu_du_lieu.GetCurSel() == 4)
+	else if (kieu_du_lieu.GetCurSel() == 4)
 	{
 		for (int i = tes_bd_1; i <= tes_kt_1; i++)
 		{
@@ -830,12 +830,14 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 			path_file_in = path + path_foder + "\\" + input;
 			ofstream taoinput;
 			taoinput.open(path_file_in);
-			string n = sinh_file_input().sinhsongaunhien_boll(rand_batdau, rand_ketthuc);
-			taoinput << n << endl;
-			taoinput.close();
-			taoinput.open(path_file_in, ios_base::app);
-			string a = sinh_file_input().sinhsongaunhien_boll(rand_batdau, rand_ketthuc);
-			taoinput << a << endl;
+			
+			int nPhantu = 0;
+			string lay_mang[1000];
+			sinh_file_input().sinhmangso_bool(lay_mang, rand_batdau, rand_ketthuc, nPhantu);
+			taoinput << nPhantu << endl;
+			for (int i = 0; i < nPhantu; i++) {
+				taoinput << lay_mang[i] << endl;
+			}
 			taoinput.close();
 			Sleep(1000);
 		}
@@ -849,20 +851,109 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 			path_file_in = path + path_foder + "\\" + input;
 			ofstream taoinput;
 			taoinput.open(path_file_in);
-			string n = sinh_file_input().sinhsongaunhien_boll(rand_bd_1, rand_kt_1);
-			taoinput << n << endl;
-			taoinput.close();
-			taoinput.open(path_file_in, ios_base::app);
-			string a = sinh_file_input().sinhsongaunhien_boll(rand_bd_1, rand_kt_1);
-			taoinput << a << endl;
+
+			int nPhantu = 0;
+			string lay_mang[1000];
+			sinh_file_input().sinhmangso_bool(lay_mang, rand_bd_1, rand_kt_1, nPhantu);
+			taoinput << nPhantu << endl;
+			for (int i = 0; i < nPhantu; i++) {
+				taoinput << lay_mang[i] << endl;
+			}
 			taoinput.close();
 			Sleep(1000);
-
 
 		}
 	}
 
 	}
-	
+
+
+	else if (m_chon_chuong_trinh.GetCurSel() == 3)
+	{
+	if (kieu_du_lieu.GetCurSel() == 0)
+	{
+		for (int i = tes_bd_1; i <= tes_kt_1; i++)
+		{
+			//tao forder test
+			path_add.Format(_T("%d"), i);
+			path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
+			tenthumuctest.taoTMTEST(path + path_foder);
+			// sinh file iuput
+			path_file_in = path + path_foder + "\\" + input;
+			ofstream taoinput;
+			taoinput.open(path_file_in);
+
+			int nPhantu = 0;
+			int mPhantu = 0;
+			
+			int* n_mangphantu = sinh_file_input().sinhmanghaichieu_int(rand_batdau, rand_ketthuc, nPhantu, mPhantu);
+			taoinput << nPhantu << " "<< mPhantu<<endl;
+			for (int i = 0; i < nPhantu; i++) {
+				for (int j = 0; j < mPhantu; j++) {
+					taoinput << n_mangphantu[j] << " ";
+					
+				}
+				cout << "\n"<< endl;
+				
+				
+			}
+			taoinput.close();
+			Sleep(100);
+		}
+		for (int i = test_bd_2; i <= test_kt_2; i++)
+		{
+			//tao forder test
+			
+
+		}
+	}
+	else if (kieu_du_lieu.GetCurSel() == 1)
+	{
+		for (int i = tes_bd_1; i <= tes_kt_1; i++)
+		{
+			
+		}
+		for (int i = test_bd_2; i <= test_kt_2; i++)
+		{
+			
+
+		}
+	}
+	else if (kieu_du_lieu.GetCurSel() == 2)
+	{
+		for (int i = tes_bd_1; i <= tes_kt_1; i++)
+		{
+			
+		}
+		for (int i = test_bd_2; i <= test_kt_2; i++)
+		{
+			
+		}
+	}
+	else if (kieu_du_lieu.GetCurSel() == 3)
+	{
+		for (int i = tes_bd_1; i <= tes_kt_1; i++)
+		{
+			
+		}
+		for (int i = test_bd_2; i <= test_kt_2; i++)
+		{
+			
+
+		}
+	}
+	else if (kieu_du_lieu.GetCurSel() == 4)
+	{
+		for (int i = tes_bd_1; i <= tes_kt_1; i++)
+		{
+			
+		}
+		for (int i = test_bd_2; i <= test_kt_2; i++)
+		{
+			
+		}
+	}
+
+	}
 }
 
