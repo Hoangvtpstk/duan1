@@ -148,23 +148,38 @@ void sinh_file_input::sinhmangso_bool(string* lay_mang, int bat_dau, int ket_thu
 
 }
 
-int* sinh_file_input::sinhmanghaichieu_int(int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu) {
-	srand(time(NULL));
+void sinh_file_input::sinhmanghaichieu_int(int a[100][100],int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu) {
+	//srand(time(NULL));
 	int n = rand() % ket_thuc - bat_dau;
 	int m = rand() % ket_thuc - bat_dau;
 	
-	int a[100][100];
-	
-	for (int i = bat_dau; i <= n; i++) {
-		cout << endl;
-		for (int j = bat_dau; j <= m; j++) {
+	for (int i = 0; i < n; i++) {
+		
+		for (int j = 0; j < m; j++) {
 			a[i][j] = rand() % (ket_thuc - bat_dau + 1) + bat_dau;
-			cout << "  ";
 		}
 		
 	}
 	n_phatu = n;
 	m_phantu = m;
-	return &a[0][0];
+
 	
+}
+
+void sinh_file_input::sinhmanghaichieu_float(float a[50][50], int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu) {
+	//srand(time(NULL));
+	int n = rand() % ket_thuc - bat_dau;
+	int m = rand() % ket_thuc - bat_dau;
+
+	for (int i = 0; i < n; i++) {
+
+		for (int j = 0; j < m; j++) {
+			a[i][j] = (float)bat_dau + (float)(ket_thuc - bat_dau) * (float)rand() / (float)RAND_MAX; ;
+		}
+
+	}
+	n_phatu = n;
+	m_phantu = m;
+
+
 }

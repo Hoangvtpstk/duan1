@@ -19,5 +19,7 @@ public:
 	char* sinhmangso_char(int bat_dau, int ket_thuc, int& n_phatu);
 	void sinhmangso_string(string* lay_mang,int bat_dau, int ket_thuc, int& n_phatu);
 	void sinhmangso_bool(string* lay_mang, int bat_dau, int ket_thuc, int& n_phatu);
-	int* sinhmanghaichieu_int(int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu);
+	void sinhmanghaichieu_int(int a[100][100],int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu);
+	void sinhmanghaichieu_float(float a[50][50], int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu);
+
 };
