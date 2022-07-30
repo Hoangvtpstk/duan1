@@ -207,10 +207,46 @@ HCURSOR CtienichsinhtetsDlg::OnQueryDragIcon()
 
 
 
-void CtienichsinhtetsDlg::OnEnChangeTenTm()
+void CtienichsinhtetsDlg::taothumuc_test(int chonCT, int chonKDL,int testBD,int testKT)
 {
-	
+	CString path;
+	CString path_add;
+	CString path_foder;
+	tao_thu_muc   tenthumuc;
+	tao_thu_muc   tenthumuctest;
+	CString path_file_in;
+	// tao thu muc cha
+	UpdateData(TRUE);
+	path = _T("D:\\Code\\du an sinh tes\\sinhtest\\");
+	tenthumuc.taoTM((path + ten_TM));
+	for (int i = tes_bd_1; i <= tes_kt_1; i++)
+	{
+		//tao forder test
+		path_add.Format(_T("%d"), i);
+		path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
+		tenthumuctest.taoTMTEST(path + path_foder);
+		// sinh file iuput
+		path_file_in = path + path_foder + "\\" + input;
+		ofstream taoinput;
+		taoinput.open(path_file_in);
+		int nint;
+		string nstring;
+		float nfloat;
+		//chonKDL=0 int, chonKDL=1, float, chonKDL=2 char, chonKDL=3 string, chonKDL=4 bool
+		if(chonCT==0 && chonKDL==0) 
+			sinh_file_input().sinhsongaunhien_int(testBD, testKT);
+		else if (chonCT == 0 && chonKDL == 1)
+			 sinh_file_input().sinhsongaunhien_float(testBD, testKT);
+		else if (chonCT == 0 && chonKDL == 2)
+			sinh_file_input().sinhkytugaunhien_char(testBD, testKT);
+		else if (chonCT == 0 && chonKDL == 3)
+			sinh_file_input().sinhchuoingaunhien(testBD, testKT);
+		else if (chonCT == 0 && chonKDL == 4)
+			sinh_file_input().sinhsongaunhien_boll(testBD, testKT);
+		
+	}
 }
+
 
 
 void CtienichsinhtetsDlg::OnBnClickedButton1()
@@ -222,22 +258,17 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 	tao_thu_muc   tenthumuctest;
 	CString path_file_in;
 	
+	//for (int i = batdau; i < soluong+batdau; i++)
+	//{
+	//
+	//	//sinh file output
+	//	CString path_file_out = path + path_foder + "\\" + output;
+	//	ofstream taooutput;
+	//	taooutput.open(path_file_out);
+	//	taooutput.close();
+	//}
 	
-	// tao thu muc cha
-		UpdateData(TRUE);
-		path = _T("D:\\Code\\du an sinh tes\\sinhtest\\");
-		tenthumuc.taoTM((path+ten_TM));
-
-	for (int i = batdau; i < soluong+batdau; i++)
-	{
-	
-		//sinh file output
-		CString path_file_out = path + path_foder + "\\" + output;
-		ofstream taooutput;
-		taooutput.open(path_file_out);
-		taooutput.close();
-	}
-	if (m_chon_chuong_trinh.GetCurSel() == 0) 
+		if (m_chon_chuong_trinh.GetCurSel() == 0) 
 	{
 		if (kieu_du_lieu.GetCurSel() == 0)
 		{
@@ -704,7 +735,7 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 			float* n_mangphantu = sinh_file_input().sinhmangso_float(rand_batdau, rand_ketthuc, nPhantu);
 			taoinput << nPhantu << endl;
 			for (int i = 0; i < nPhantu; i++) {
-				taoinput << n_mangphantu[i] << " ";
+				taoinput << roundf(n_mangphantu[i]*100)/100 << " ";
 			}
 			taoinput.close();
 			Sleep(1000);
@@ -724,7 +755,7 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 			float* n_mangphantu = sinh_file_input().sinhmangso_float(rand_bd_1, rand_kt_1, nPhantu);
 			taoinput << nPhantu << endl;
 			for (int i = 0; i < nPhantu; i++) {
-				taoinput << n_mangphantu[i] << " ";
+				taoinput << roundf(n_mangphantu[i]*100)/100 << " ";
 			}
 			taoinput.close();
 			Sleep(1000);
@@ -745,10 +776,11 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 			taoinput.open(path_file_in);
 
 			int nPhantu = 0;
-			char* n_mangphantu = sinh_file_input().sinhmangso_char(rand_batdau, rand_ketthuc, nPhantu);
+			char a[255];
+			 sinh_file_input().sinhmangso_char(a,rand_batdau, rand_ketthuc, nPhantu);
 			taoinput << nPhantu << endl;
 			for (int i = 0; i < nPhantu; i++) {
-				taoinput << n_mangphantu[i] << " ";
+				taoinput << a[i] << " ";
 			}
 			taoinput.close();
 			Sleep(1000);
@@ -765,10 +797,11 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 			taoinput.open(path_file_in);
 
 			int nPhantu = 0;
-			char* n_mangphantu = sinh_file_input().sinhmangso_char(rand_bd_1, rand_kt_1, nPhantu);
+			char a[255];
+			 sinh_file_input().sinhmangso_char(a,rand_bd_1, rand_kt_1, nPhantu);
 			taoinput << nPhantu << endl;
 			for (int i = 0; i < nPhantu; i++) {
-				taoinput << n_mangphantu[i] << " ";
+				taoinput << a[i] << " ";
 			}
 			taoinput.close();
 			Sleep(1000);
@@ -874,57 +907,57 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 	{
 		for (int i = tes_bd_1; i <= tes_kt_1; i++)
 		{
-			//tao forder test
-			path_add.Format(_T("%d"), i);
-			path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
-			tenthumuctest.taoTMTEST(path + path_foder);
-			// sinh file iuput
-			path_file_in = path + path_foder + "\\" + input;
-			ofstream taoinput;
-			taoinput.open(path_file_in);
+			////tao forder test
+			//path_add.Format(_T("%d"), i);
+			//path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
+			//tenthumuctest.taoTMTEST(path + path_foder);
+			//// sinh file iuput
+			//path_file_in = path + path_foder + "\\" + input;
+			//ofstream taoinput;
+			//taoinput.open(path_file_in);
 
-			int nPhantu = 0;
-			int mPhantu = 0;
-			int a[100][100];
-			 sinh_file_input().sinhmanghaichieu_int( a,rand_batdau, rand_ketthuc, nPhantu, mPhantu);
-			taoinput << nPhantu << " "<< mPhantu<<endl;
-			for (int i = 0; i < nPhantu; i++) {
-				for (int j = 0; j < mPhantu; j++) {
-					taoinput << a[i][j] << " ";					
-				}
-				taoinput << endl;
-				
-			}
-			Sleep(100);
-			taoinput.close();
+			//int nPhantu = 0;
+			//int mPhantu = 0;
+			//int a[100][100];
+			// sinh_file_input().sinhmanghaichieu_int( a,rand_batdau, rand_ketthuc, nPhantu, mPhantu);
+			//taoinput << nPhantu << " "<< mPhantu<<endl;
+			//for (int i = 0; i < nPhantu; i++) {
+			//	for (int j = 0; j < mPhantu; j++) {
+			//		taoinput << a[i][j] << " ";					
+			//	}
+			//	taoinput << endl;
+			//	
+			//}
+			//Sleep(100);
+			//taoinput.close();
 			
 		}
 		for (int i = test_bd_2; i <= test_kt_2; i++)
 		{
-			//tao forder test
-			path_add.Format(_T("%d"), i);
-			path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
-			tenthumuctest.taoTMTEST(path + path_foder);
-			// sinh file iuput
-			path_file_in = path + path_foder + "\\" + input;
-			ofstream taoinput;
-			taoinput.open(path_file_in);
+			////tao forder test
+			//path_add.Format(_T("%d"), i);
+			//path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
+			//tenthumuctest.taoTMTEST(path + path_foder);
+			//// sinh file iuput
+			//path_file_in = path + path_foder + "\\" + input;
+			//ofstream taoinput;
+			//taoinput.open(path_file_in);
 
-			int nPhantu = 0;
-			int mPhantu = 0;
-			int a[100][100];
-			sinh_file_input().sinhmanghaichieu_int(a, rand_bd_1, rand_kt_1, nPhantu, mPhantu);
-			taoinput << nPhantu << " " << mPhantu << endl;
-			for (int i = 0; i < nPhantu; i++) {
-				for (int j = 0; j < mPhantu; j++) {
-					taoinput << a[i][j] << " ";
-				}
-				taoinput << endl;
+			//int nPhantu = 0;
+			//int mPhantu = 0;
+			//int a[100][100];
+			//sinh_file_input().sinhmanghaichieu_int(a, rand_bd_1, rand_kt_1, nPhantu, mPhantu);
+			//taoinput << nPhantu << " " << mPhantu << endl;
+			//for (int i = 0; i < nPhantu; i++) {
+			//	for (int j = 0; j < mPhantu; j++) {
+			//		taoinput << a[i][j] << " ";
+			//	}
+			//	taoinput << endl;
 
-			}
-			Sleep(100);
-			taoinput.close();
-			
+			//}
+			//Sleep(100);
+			//taoinput.close();
+			//
 
 		}
 	}
@@ -932,56 +965,56 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 	{
 		for (int i = tes_bd_1; i <= tes_kt_1; i++)
 		{
-			//tao forder test
-			path_add.Format(_T("%d"), i);
-			path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
-			tenthumuctest.taoTMTEST(path + path_foder);
-			// sinh file iuput
-			path_file_in = path + path_foder + "\\" + input;
-			ofstream taoinput;
-			taoinput.open(path_file_in);
+			////tao forder test
+			//path_add.Format(_T("%d"), i);
+			//path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
+			//tenthumuctest.taoTMTEST(path + path_foder);
+			//// sinh file iuput
+			//path_file_in = path + path_foder + "\\" + input;
+			//ofstream taoinput;
+			//taoinput.open(path_file_in);
+			//int nPhantu = 0;
+			//int mPhantu = 0;
+			//float a[50][50];
+			//sinh_file_input().sinhmanghaichieu_float(a, rand_batdau, rand_ketthuc, nPhantu, mPhantu);
+			//taoinput << nPhantu << " " << mPhantu << endl;
+			//for (int i = 0; i < nPhantu; i++) {
+			//	for (int j = 0; j < mPhantu; j++) {
+			//		taoinput << roundf(a[i][j]*100)/100 << " ";
+			//	}
+			//	taoinput << endl;
 
-			int nPhantu = 0;
-			int mPhantu = 0;
-			float a[50][50];
-			sinh_file_input().sinhmanghaichieu_float(a, rand_batdau, rand_ketthuc, nPhantu, mPhantu);
-			taoinput << nPhantu << " " << mPhantu << endl;
-			for (int i = 0; i < nPhantu; i++) {
-				for (int j = 0; j < mPhantu; j++) {
-					taoinput << a[i][j] << " ";
-				}
-				taoinput << endl;
-
-			}
-			Sleep(100);
-			taoinput.close();
+			//}
+			//Sleep(100);
+			//taoinput.close();
 
 		}
 		for (int i = test_bd_2; i <= test_kt_2; i++)
 		{
-			//tao forder test
-			path_add.Format(_T("%d"), i);
-			path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
-			tenthumuctest.taoTMTEST(path + path_foder);
-			// sinh file iuput
-			path_file_in = path + path_foder + "\\" + input;
-			ofstream taoinput;
-			taoinput.open(path_file_in);
+			////tao forder test
+			//path_add.Format(_T("%d"), i);
+			//path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
+			//tenthumuctest.taoTMTEST(path + path_foder);
+			//// sinh file iuput
+			//path_file_in = path + path_foder + "\\" + input;
+			//ofstream taoinput;
+			//taoinput.open(path_file_in);
 
-			int nPhantu = 0;
-			int mPhantu = 0;
-			float a[50][50];
-			sinh_file_input().sinhmanghaichieu_float(a, rand_bd_1, rand_kt_1, nPhantu, mPhantu);
-			taoinput << nPhantu << " " << mPhantu << endl;
-			for (int i = 0; i < nPhantu; i++) {
-				for (int j = 0; j < mPhantu; j++) {
-					taoinput << a[i][j] << " ";
-				}
-				taoinput << endl;
+			//int nPhantu = 0;
+			//int mPhantu = 0;
+			//float a[50][50];
+			//sinh_file_input().sinhmanghaichieu_float(a, rand_bd_1, rand_kt_1, nPhantu, mPhantu);
+			//taoinput << nPhantu << " " << mPhantu << endl;
+			//for (int i = 0; i < nPhantu; i++) {
+			//	for (int j = 0; j < mPhantu; j++) {
+			//		
+			//		taoinput <<  roundf(a[i][j]*100)/100 << " ";
+			//	}
+			//	taoinput << endl;
 
-			}
-			Sleep(100);
-			taoinput.close();
+			//}
+			//Sleep(100);
+			//taoinput.close();
 
 		}
 	}
@@ -989,18 +1022,81 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 	{
 		for (int i = tes_bd_1; i <= tes_kt_1; i++)
 		{
-			
+			////tao forder test
+			//path_add.Format(_T("%d"), i);
+			//path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
+			//tenthumuctest.taoTMTEST(path + path_foder);
+			//// sinh file iuput
+			//path_file_in = path + path_foder + "\\" + input;
+			//ofstream taoinput;
+			//taoinput.open(path_file_in);
+			//int nPhantu = 0;
+			//int mPhantu = 0;
+			//char a[50][50];
+			//sinh_file_input().sinhmang2chieu_char(a, rand_batdau, rand_ketthuc, nPhantu, mPhantu);
+			//taoinput << nPhantu << " " << mPhantu << endl;
+			//for (int i = 0; i < nPhantu; i++) {
+			//	for (int j = 0; j < mPhantu; j++) {
+			//		taoinput << a[i][j]  << " ";
+			//	}
+			//	taoinput << endl;
+
+			//}
+			//Sleep(100);
+			//taoinput.close();
 		}
 		for (int i = test_bd_2; i <= test_kt_2; i++)
 		{
-			
+			////tao forder test
+			//path_add.Format(_T("%d"), i);
+			//path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
+			//tenthumuctest.taoTMTEST(path + path_foder);
+			//// sinh file iuput
+			//path_file_in = path + path_foder + "\\" + input;
+			//ofstream taoinput;
+			//taoinput.open(path_file_in);
+			//int nPhantu = 0;
+			//int mPhantu = 0;
+			//char a[50][50];
+			//sinh_file_input().sinhmang2chieu_char(a, rand_bd_1, rand_kt_1, nPhantu, mPhantu);
+			//taoinput << nPhantu << " " << mPhantu << endl;
+			//for (int i = 0; i < nPhantu; i++) {
+			//	for (int j = 0; j < mPhantu; j++) {
+			//		taoinput << a[i][j] << " ";
+			//	}
+			//	taoinput << endl;
+
+			//}
+			//Sleep(100);
+			//taoinput.close();
 		}
 	}
 	else if (kieu_du_lieu.GetCurSel() == 3)
 	{
 		for (int i = tes_bd_1; i <= tes_kt_1; i++)
 		{
-			
+			////tao forder test
+			//path_add.Format(_T("%d"), i);
+			//path_foder = ten_TM + "\\" + ten_TMTEST + path_add;
+			//tenthumuctest.taoTMTEST(path + path_foder);
+			//// sinh file iuput
+			//path_file_in = path + path_foder + "\\" + input;
+			//ofstream taoinput;
+			//taoinput.open(path_file_in);
+			//int nPhantu = 0;
+			//int mPhantu = 0;
+			//char a[50][50];
+			//sinh_file_input().sinhmang2chieu_char(a, rand_batdau, rand_ketthuc, nPhantu, mPhantu);
+			//taoinput << nPhantu << " " << mPhantu << endl;
+			//for (int i = 0; i < nPhantu; i++) {
+			//	for (int j = 0; j < mPhantu; j++) {
+			//		taoinput << a[i][j]  << " ";
+			//	}
+			//	taoinput << endl;
+
+			//}
+			//Sleep(100);
+			//taoinput.close();
 		}
 		for (int i = test_bd_2; i <= test_kt_2; i++)
 		{
