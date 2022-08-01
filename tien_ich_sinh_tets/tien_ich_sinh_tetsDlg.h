@@ -38,8 +38,9 @@ protected:
 public:
 	CString ten_TM;
 	CString ten_TMTEST =_T("Test");
-	
-	afx_msg void taothumuc_test(int chonCT, int chonKDL, int testBD, int testKT);
+
+	afx_msg void OnEnChangeTenTm();
+	afx_msg void taothumuc_test(int chonCT, int chonKDL, int testBD, int testKT, int rand_BD, int rand_KT, int& nint, float& nfloat, string& nstring);
 
 	afx_msg void OnBnClickedButton1();
 	int soluong;

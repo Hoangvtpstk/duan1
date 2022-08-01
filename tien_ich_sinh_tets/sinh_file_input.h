@@ -14,13 +14,15 @@ public:
 	string sinhkytugaunhien_char(int bat_dau, int ket_thuc);
 	string sinhchuoingaunhien(int bat_dau, int ket_thuc);
 	string sinhsongaunhien_boll(int bat_dau, int ket_thuc);
-	int* sinhmangso_int(int bat_dau, int ket_thuc, int& n_phatu);
-	float* sinhmangso_float(int bat_dau, int ket_thuc, int& n_phatu);
+	void sinhmangso_int(int a[100],int bat_dau, int ket_thuc, int& n_phatu);
+	void sinhmangso_float(float a[1000], int bat_dau, int ket_thuc, int& n_phatu);
 	void sinhmangso_char(char a[255],int bat_dau, int ket_thuc, int& n_phatu);
 	void sinhmangso_string(string* lay_mang,int bat_dau, int ket_thuc, int& n_phatu);
 	void sinhmangso_bool(string* lay_mang, int bat_dau, int ket_thuc, int& n_phatu);
-	//void sinhmanghaichieu_int(int a[100][100],int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu);
-	//void sinhmanghaichieu_float(float a[50][50], int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu);
-	//void sinhmang2chieu_char(char a[50][50], int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu);
-	////void sinhmang2chieu_string(char a[10][10], int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu,int& soluongchuoi);
+	void sinhmanghaichieu_int(int a[100][100],int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu);
+	void sinhmanghaichieu_float(float a[50][50], int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu);
+	void sinhmang2chieu_char(char a[50][50], int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu);
+	void sinhmang2chieu_string(char a[10][10], int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu,int& soluongchuoi);
+	void sinhmanghaichieu_bool(int a[100][100], int bat_dau, int ket_thuc, int& n_phatu, int& m_phantu);
 };
+
