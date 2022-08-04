@@ -191,6 +191,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="sinh_file_input.h" />
+    <ClInclude Include="sinh_out.h" />
     <ClInclude Include="tao_thu_muc.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="tien_ich_sinh_tets.h" />
@@ -204,6 +205,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="sinh_file_input.cpp" />
+    <ClCompile Include="sinh_out.cpp" />
     <ClCompile Include="tao_thu_muc.cpp" />
     <ClCompile Include="tien_ich_sinh_tets.cpp" />
     <ClCompile Include="tien_ich_sinh_tetsDlg.cpp" />

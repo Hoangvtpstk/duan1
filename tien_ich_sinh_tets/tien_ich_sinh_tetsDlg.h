@@ -6,6 +6,7 @@
 #include"tao_thu_muc.h"
 #include"sinh_file_input.h"
 #include<fstream>
+#include"sinh_out.h"
 
 // CtienichsinhtetsDlg dialog
 class CtienichsinhtetsDlg : public CDialogEx
@@ -61,6 +62,9 @@ public:
 	int test_kt_2;
 	int rand_bd_1;
 	int rand_kt_1;
+	CProgressCtrl m_quatrinhXL;
+	int nProgressCheck;
 	
-	
+	afx_msg void OnBnClickedButton2();
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };

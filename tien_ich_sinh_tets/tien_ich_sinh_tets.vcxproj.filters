@@ -39,6 +39,9 @@
     <ClInclude Include="sinh_file_input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sinh_out.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tien_ich_sinh_tets.cpp">
@@ -54,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sinh_file_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sinh_out.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

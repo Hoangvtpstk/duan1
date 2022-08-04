@@ -102,6 +102,7 @@ void CtienichsinhtetsDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT12, test_kt_2);
 	DDX_Text(pDX, IDC_EDIT13, rand_bd_1);
 	DDX_Text(pDX, IDC_EDIT14, rand_kt_1);
+	DDX_Control(pDX, IDC_QTXULY, m_quatrinhXL);
 }
 
 BEGIN_MESSAGE_MAP(CtienichsinhtetsDlg, CDialogEx)
@@ -112,6 +113,8 @@ BEGIN_MESSAGE_MAP(CtienichsinhtetsDlg, CDialogEx)
 	
 	ON_BN_CLICKED(IDC_BUTTON1, &CtienichsinhtetsDlg::OnBnClickedButton1)
 	
+	ON_BN_CLICKED(IDC_BUTTON2, &CtienichsinhtetsDlg::OnBnClickedButton2)
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 
@@ -120,7 +123,10 @@ END_MESSAGE_MAP()
 BOOL CtienichsinhtetsDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
+	/*m_quatrinhXL.SetRange(0, 100);
+	m_quatrinhXL.SetStep(1);
 
+	SetTimer(1, 40, NULL);*/
 	// Add "About..." menu item to system menu.
 
 	// IDM_ABOUTBOX must be in the system command range.
@@ -152,6 +158,8 @@ BOOL CtienichsinhtetsDlg::OnInitDialog()
 	// 
 	m_chon_chuong_trinh.SetCurSel(0);
 	kieu_du_lieu.SetCurSel(0);
+
+	m_quatrinhXL.SetPos(0);
 	
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -752,6 +760,16 @@ void CtienichsinhtetsDlg::taothumuc_test(int chonCT, int chonKDL,int testBD,int 
 
 void CtienichsinhtetsDlg::OnBnClickedButton1()
 {
+	m_quatrinhXL.SetPos(0);
+	nProgressCheck = 0;
+	for (size_t i = 0; i <=100; i++)
+	{
+		m_quatrinhXL.SetPos(i);
+		Sleep(10);
+	}
+	m_quatrinhXL.SetPos(100);
+	//SetTimer(0, 100, NULL);
+
 	CString path;
 	CString path_add;
 	CString path_foder;
@@ -925,3 +943,27 @@ void CtienichsinhtetsDlg::OnBnClickedButton1()
 }
 
 
+
+
+void CtienichsinhtetsDlg::OnBnClickedButton2()
+{
+	sinh_out fileout;
+	fileout.DoModal();
+}
+
+
+void CtienichsinhtetsDlg::OnTimer(UINT_PTR nIDEvent)
+{
+	// TODO: Add your message handler code here and/or call default
+	if (nIDEvent == 0)
+	{
+		nProgressCheck++;
+		m_quatrinhXL.SetPos(nProgressCheck);
+
+		if (nProgressCheck == 100)
+		{
+			KillTimer(0);
+		}
+	}
+	CDialogEx::OnTimer(nIDEvent);
+}

@@ -31,6 +31,7 @@ void tao_thu_muc::DoDataExchange(CDataExchange* pDX)
 	//DDX_Control(pDX, IDC_LISTINPUT, m_listinput);
 
 
+	
 }
 
 
