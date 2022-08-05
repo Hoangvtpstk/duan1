@@ -221,7 +221,8 @@ void CtienichsinhtetsDlg::taothumuc_test(int chonCT, int chonKDL,int testBD,int 
 	CString path_file_in;
 	// tao thu muc cha
 	UpdateData(TRUE);
-	path = _T("D:\\Code\\du an sinh tes\\sinhtest\\");
+	path = _T("sinhtest\\");
+	tenthumuc.taoTM((path));
 	tenthumuc.taoTM((path + ten_TM));
 	for (int i = tes_bd_1; i <= tes_kt_1; i++)
 	{
